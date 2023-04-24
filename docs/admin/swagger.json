@@ -1,0 +1,2259 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "All APIs for Warehouse admin.\n\n******************************\n- Add description\n******************************\n",
+        "title": "Selly Warehouse - Admin API",
+        "termsOfService": "https://selly.vn",
+        "contact": {
+            "name": "Dev team",
+            "url": "https://selly.vn",
+            "email": "dev@selly.vn"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/admin/warehouse",
+    "paths": {
+        "/audits": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Audit"
+                ],
+                "summary": "All",
+                "operationId": "admin-audit-all",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "DeviceID",
+                        "name": "Device-ID",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Pagination",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "target",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "targetID",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseAuditAll"
+                        }
+                    }
+                }
+            }
+        },
+        "/configurations/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WarehouseConfiguration"
+                ],
+                "summary": "Detail",
+                "operationId": "admin-warehouseConfiguration-detail",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Warehouse id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseWarehouseConfigurationDetail"
+                        }
+                    }
+                }
+            }
+        },
+        "/configurations/{id}/delivery": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WarehouseConfiguration"
+                ],
+                "summary": "Update",
+                "operationId": "admin-warehouseConfiguration-updateDelivery",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Warehouse config id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.WarehouseCfgDeliveryUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.Upsert"
+                        }
+                    }
+                }
+            }
+        },
+        "/configurations/{id}/food": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WarehouseConfiguration"
+                ],
+                "summary": "Update Food",
+                "operationId": "admin-warehouseConfiguration-updateFood",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Warehouse config id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.WarehouseCfgFoodUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/configurations/{id}/order": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WarehouseConfiguration"
+                ],
+                "summary": "Update",
+                "operationId": "admin-warehouseConfiguration-updateOrder",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Warehouse config id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.WarehouseCfgOrderUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.Upsert"
+                        }
+                    }
+                }
+            }
+        },
+        "/configurations/{id}/order-confirm": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WarehouseConfiguration"
+                ],
+                "summary": "UpdateOrderConfirm",
+                "operationId": "admin-warehouseConfiguration-order-confirm",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Warehouse config id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.WarehouseCfgOrderConfirm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/configurations/{id}/other": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WarehouseConfiguration"
+                ],
+                "summary": "Update",
+                "operationId": "admin-warehouseConfiguration-updateOther",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Warehouse config id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.WarehouseCfgOtherUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.Upsert"
+                        }
+                    }
+                }
+            }
+        },
+        "/configurations/{id}/partner": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WarehouseConfiguration"
+                ],
+                "summary": "Update",
+                "operationId": "admin-warehouseConfiguration-updatePartner",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Warehouse config id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.WarehouseCfgPartnerUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.Upsert"
+                        }
+                    }
+                }
+            }
+        },
+        "/configurations/{id}/supplier": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WarehouseConfiguration"
+                ],
+                "summary": "Update",
+                "operationId": "admin-warehouseConfiguration-updateSupplier",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Warehouse config id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.WarehouseCfgSupplierUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.Upsert"
+                        }
+                    }
+                }
+            }
+        },
+        "/outbound-request-histories": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "OutboundRequestHistory"
+                ],
+                "summary": "Get List",
+                "operationId": "admin-outbound-request-history-list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "example": "outbound_request_id",
+                        "name": "request",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.OutboundRequestHistoryList"
+                        }
+                    }
+                }
+            }
+        },
+        "/outbound-requests": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "OutboundRequest"
+                ],
+                "summary": "Get List",
+                "operationId": "admin-outbound-request-list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "example": "order_id",
+                        "name": "order",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.OutboundRequestList"
+                        }
+                    }
+                }
+            }
+        },
+        "/ping": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Common"
+                ],
+                "summary": "Ping",
+                "operationId": "ping",
+                "responses": {}
+            }
+        },
+        "/supplier-holidays": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SupplierHoliday"
+                ],
+                "summary": "All",
+                "operationId": "admin-supplier-holiday-all",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "name": "fromAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "keyword",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "supplier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "toAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "warehouse",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseSupplierHolidayAll"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SupplierHoliday"
+                ],
+                "summary": "Create",
+                "operationId": "admin-supplier-holiday-create",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.SupplierHolidayCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseCreate"
+                        }
+                    }
+                }
+            }
+        },
+        "/supplier-holidays/run-job-update-holiday-status-for-supplier": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SupplierHoliday"
+                ],
+                "summary": "RunJobUpdateHolidayStatusForSupplier",
+                "operationId": "run-job-update-holiday-status-for-supplier",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/supplier-holidays/run-job-update-holiday-warehouses": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SupplierHoliday"
+                ],
+                "summary": "RunJobUpdateHolidayWarehouses",
+                "operationId": "run-job-update-holiday-warehouses",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/supplier-holidays/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SupplierHoliday"
+                ],
+                "summary": "Detail",
+                "operationId": "admin-supplier-holiday-detail",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Supplier holiday id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseSupplierHolidayDetail"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SupplierHoliday"
+                ],
+                "summary": "Update",
+                "operationId": "admin-supplier-holiday-update",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Supplier holiday id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.SupplierHolidayUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseChangeStatus"
+                        }
+                    }
+                }
+            }
+        },
+        "/supplier-holidays/{id}/status": {
+            "patch": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "SupplierHoliday"
+                ],
+                "summary": "Change status",
+                "operationId": "admin-supplier-holiday-change-status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Supplier holiday id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.SupplierHolidayChangeStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseUpdate"
+                        }
+                    }
+                }
+            }
+        },
+        "/warehouses": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "All",
+                "operationId": "admin-warehouse-all",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            "food",
+                            "all",
+                            "other"
+                        ],
+                        "type": "string",
+                        "name": "businessType",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "keyword",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "partner",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "supplier",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseWarehouseAll"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "Create",
+                "operationId": "admin-warehouse-create",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.WarehouseCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.Upsert"
+                        }
+                    }
+                }
+            }
+        },
+        "/warehouses/run-job-set-is-closed": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "RunJobSetIsClosed",
+                "operationId": "run-job-set-is-close-warehouse-all",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/warehouses/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "Detail",
+                "operationId": "admin-warehouse-detail",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Warehouse id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.ResponseWarehouseDetail"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "Update",
+                "operationId": "admin-warehouse-update",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "routeId",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.WarehouseUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.Upsert"
+                        }
+                    }
+                }
+            }
+        },
+        "/warehouses/{id}/status": {
+            "patch": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Warehouse"
+                ],
+                "summary": "Update",
+                "operationId": "admin-warehouse-updateStatus",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Device id",
+                        "name": "device-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Warehouse id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/requestmodel.WarehouseUpdateStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responsemodel.Upsert"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "audit.Audit": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "author": {
+                    "$ref": "#/definitions/audit.Author"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                },
+                "targetId": {
+                    "type": "string"
+                }
+            }
+        },
+        "audit.Author": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "mgwarehouse.ConfigOrderConfirm": {
+            "type": "object",
+            "properties": {
+                "confirmDelayInSeconds": {
+                    "type": "integer"
+                },
+                "isEnable": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "requestmodel.LatLng": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                }
+            }
+        },
+        "requestmodel.SupplierHolidayChangeStatus": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestmodel.SupplierHolidayCreate": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "type": "string"
+                },
+                "isApplyAll": {
+                    "type": "boolean"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "supplier": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "to": {
+                    "type": "string"
+                },
+                "warehouses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "requestmodel.SupplierHolidayUpdate": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "type": "string"
+                },
+                "isApplyAll": {
+                    "type": "boolean"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "supplier": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "to": {
+                    "type": "string"
+                },
+                "warehouses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "requestmodel.TimeRange": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "type": "integer"
+                },
+                "to": {
+                    "type": "integer"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgCreate": {
+            "type": "object",
+            "properties": {
+                "delivery": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgDelivery"
+                },
+                "doesSupportSellyExpress": {
+                    "type": "boolean"
+                },
+                "food": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgFood"
+                },
+                "order": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgOrder"
+                },
+                "orderConfirm": {
+                    "$ref": "#/definitions/mgwarehouse.ConfigOrderConfirm"
+                },
+                "partner": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgPartner"
+                },
+                "supplier": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgSupplier"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgDelivery": {
+            "type": "object",
+            "properties": {
+                "deliveryMethods": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "enabledSources": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "priorityServiceCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "types": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgDeliveryUpdate": {
+            "type": "object",
+            "properties": {
+                "delivery": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgDelivery"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgFood": {
+            "type": "object",
+            "properties": {
+                "forceClosed": {
+                    "type": "boolean"
+                },
+                "timeRange": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/requestmodel.TimeRange"
+                    }
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgFoodUpdate": {
+            "type": "object",
+            "properties": {
+                "food": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgFood"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgOrder": {
+            "type": "object",
+            "properties": {
+                "isLimitNumberOfPurchases": {
+                    "type": "boolean"
+                },
+                "limitNumberOfPurchases": {
+                    "type": "integer"
+                },
+                "minimumValue": {
+                    "type": "number"
+                },
+                "paymentMethod": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgPaymentMethod"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgOrderConfirm": {
+            "type": "object",
+            "properties": {
+                "orderConfirm": {
+                    "$ref": "#/definitions/mgwarehouse.ConfigOrderConfirm"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgOrderUpdate": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgOrder"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgOther": {
+            "type": "object",
+            "properties": {
+                "doesSupportSellyExpress": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgOtherUpdate": {
+            "type": "object",
+            "properties": {
+                "other": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgOther"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgPartner": {
+            "type": "object",
+            "properties": {
+                "authentication": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "identityCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgPartnerUpdate": {
+            "type": "object",
+            "properties": {
+                "partner": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgPartner"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgPaymentMethod": {
+            "type": "object",
+            "properties": {
+                "bankTransfer": {
+                    "type": "boolean"
+                },
+                "cod": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgSupplier": {
+            "type": "object",
+            "properties": {
+                "invoiceDeliveryMethod": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestmodel.WarehouseCfgSupplierUpdate": {
+            "type": "object",
+            "properties": {
+                "supplier": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgSupplier"
+                }
+            }
+        },
+        "requestmodel.WarehouseContact": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestmodel.WarehouseCreate": {
+            "type": "object",
+            "properties": {
+                "businessType": {
+                    "type": "string"
+                },
+                "config": {
+                    "$ref": "#/definitions/requestmodel.WarehouseCfgCreate"
+                },
+                "contact": {
+                    "$ref": "#/definitions/requestmodel.WarehouseContact"
+                },
+                "location": {
+                    "$ref": "#/definitions/requestmodel.WarehouseLocation"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "supplier": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestmodel.WarehouseLocation": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "district": {
+                    "type": "integer"
+                },
+                "fullAddress": {
+                    "type": "string"
+                },
+                "locationCoordinates": {
+                    "$ref": "#/definitions/requestmodel.LatLng"
+                },
+                "province": {
+                    "type": "integer"
+                },
+                "ward": {
+                    "type": "integer"
+                }
+            }
+        },
+        "requestmodel.WarehouseUpdate": {
+            "type": "object",
+            "properties": {
+                "contact": {
+                    "description": "BusinessType string            `json:\"businessType\"`",
+                    "$ref": "#/definitions/requestmodel.WarehouseContact"
+                },
+                "location": {
+                    "$ref": "#/definitions/requestmodel.WarehouseLocation"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestmodel.WarehouseUpdateStatus": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.OutboundRequest": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "partner": {
+                    "$ref": "#/definitions/responsemodel.OutboundRequestPartner"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "trackingCode": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.OutboundRequestHistory": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.OutboundRequestHistoryList": {
+            "type": "object",
+            "properties": {
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/responsemodel.OutboundRequestHistory"
+                    }
+                }
+            }
+        },
+        "responsemodel.OutboundRequestList": {
+            "type": "object",
+            "properties": {
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/responsemodel.OutboundRequest"
+                    }
+                }
+            }
+        },
+        "responsemodel.OutboundRequestPartner": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "identityCode": {
+                    "type": "string"
+                },
+                "requestId": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseAuditAll": {
+            "type": "object",
+            "properties": {
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/audit.Audit"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "responsemodel.ResponseChangeStatus": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseCreate": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseInfo": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseLatLng": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                }
+            }
+        },
+        "responsemodel.ResponseStaffShort": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseSupplierHolidayAll": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/responsemodel.ResponseSupplierHolidayBrief"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "responsemodel.ResponseSupplierHolidayBrief": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "$ref": "#/definitions/responsemodel.ResponseInfo"
+                },
+                "from": {
+                    "type": "string"
+                },
+                "isApplyAll": {
+                    "type": "boolean"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "supplier": {
+                    "$ref": "#/definitions/responsemodel.ResponseSupplierShort"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "to": {
+                    "type": "string"
+                },
+                "warehouses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/responsemodel.ResponseWarehouseShort"
+                    }
+                }
+            }
+        },
+        "responsemodel.ResponseSupplierHolidayDetail": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "$ref": "#/definitions/responsemodel.ResponseStaffShort"
+                },
+                "from": {
+                    "type": "string"
+                },
+                "isApplyAll": {
+                    "type": "boolean"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "supplier": {
+                    "$ref": "#/definitions/responsemodel.ResponseSupplierShort"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "to": {
+                    "type": "string"
+                },
+                "warehouses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/responsemodel.ResponseWarehouseShort"
+                    }
+                }
+            }
+        },
+        "responsemodel.ResponseSupplierShort": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseUpdate": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseAll": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/responsemodel.WarehouseBrief"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseConfigurationDetail": {
+            "type": "object",
+            "properties": {
+                "autoConfirmOrder": {
+                    "$ref": "#/definitions/mgwarehouse.ConfigOrderConfirm"
+                },
+                "delivery": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseDeliveryConfig"
+                },
+                "food": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehousePartnerFood"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "order": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseOrderConfig"
+                },
+                "other": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseOtherConfig"
+                },
+                "partner": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehousePartnerConfig"
+                },
+                "supplier": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseSupplierConfig"
+                },
+                "warehouse": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseContact": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseDeliveryConfig": {
+            "type": "object",
+            "properties": {
+                "deliveryMethods": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "enabledSources": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "priorityServiceCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "types": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseDetail": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "businessType": {
+                    "type": "string"
+                },
+                "contact": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseContact"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseLocation"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "reasonPendingInactive": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "statusBeforeHoliday": {
+                    "type": "string"
+                },
+                "supplier": {
+                    "$ref": "#/definitions/responsemodel.WarehouseSupplier"
+                },
+                "supplierHolidayFrom": {
+                    "type": "string"
+                },
+                "supplierHolidayTo": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseDistrict": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseLocation": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "district": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseDistrict"
+                },
+                "locationCoordinates": {
+                    "$ref": "#/definitions/responsemodel.ResponseLatLng"
+                },
+                "province": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseProvince"
+                },
+                "ward": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseWard"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseOrderConfig": {
+            "type": "object",
+            "properties": {
+                "isLimitNumberOfPurchases": {
+                    "type": "boolean"
+                },
+                "limitNumberOfPurchases": {
+                    "type": "integer"
+                },
+                "minimumValue": {
+                    "type": "number"
+                },
+                "paymentMethod": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehousePaymentMethodConfig"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseOtherConfig": {
+            "type": "object",
+            "properties": {
+                "doesSupportSellyExpress": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehousePartnerConfig": {
+            "type": "object",
+            "properties": {
+                "authentication": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "identityCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehousePartnerFood": {
+            "type": "object",
+            "properties": {
+                "forceClosed": {
+                    "type": "boolean"
+                },
+                "isClosed": {
+                    "type": "boolean"
+                },
+                "timeRange": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/responsemodel.TimeRange"
+                    }
+                }
+            }
+        },
+        "responsemodel.ResponseWarehousePaymentMethodConfig": {
+            "type": "object",
+            "properties": {
+                "bankTransfer": {
+                    "type": "boolean"
+                },
+                "cod": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseProvince": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseShort": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseSupplierConfig": {
+            "type": "object",
+            "properties": {
+                "invoiceDeliveryMethod": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.ResponseWarehouseWard": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.TimeRange": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "type": "integer"
+                },
+                "to": {
+                    "type": "integer"
+                }
+            }
+        },
+        "responsemodel.Upsert": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.WarehouseBrief": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "businessType": {
+                    "type": "string"
+                },
+                "contact": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseContact"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/responsemodel.ResponseWarehouseLocation"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "supplier": {
+                    "$ref": "#/definitions/responsemodel.WarehouseSupplier"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "responsemodel.WarehouseSupplier": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

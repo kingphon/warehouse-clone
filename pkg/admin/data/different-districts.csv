@@ -1,0 +1,13 @@
+city,cityId,code,name,searchString,slug,newName,newCode
+ho-chi-minh,79,762,Quận Thủ Đức,quan thu duc,quan-thu-duc,Thành phố Thủ Đức,769
+ho-chi-minh,79,763,Quận 9,quan 9,quan-9,Thành phố Thủ Đức,769
+cao-bang,4,46,Huyện Trà Lĩnh,huyen tra linh,huyen-tra-linh,Huyện Trùng Khánh,047
+cao-bang,4,50,Huyện Phục Hoà,huyen phuc hoa,huyen-phuc-hoa,Huyện Quảng Hòa,049
+cao-bang,4,39207,Huyện Quảng Hòa,huyen quang hoa,huyen-quang-hoa,Huyện Quảng Hòa,049
+cao-bang,4,44,Huyện Thông Nông,huyen thong nong,huyen-thong-nong,Huyện Hà Quảng,045
+hoa-binh,17,151,Huyện Kỳ Sơn,huyen ky son,huyen-ky-son,Thành phố Hòa Bình,148
+quang-ninh,22,204,Huyện Hoành Bồ,huyen hoanh bo,huyen-hoanh-bo,Thành phố Hạ Long,193
+ba-ria-vung-tau,77,11901,Huyện Côn Đảo,huyen con dao,huyen-con-dao,Huyện Côn Đảo,755
+ba-ria-vung-tau,77,81,Thị xã Phú Mỹ,thi xa phu my,thi-xa-phu-my,Thị xã Phú Mỹ,754
+quang-ngai,51,526,Huyện Tây Trà,huyen tay tra,huyen-tay-tra,Huyện Trà Bồng,525
+thanh-hoa,38,974,Thị xã Nghi Sơn,thi xa nghi son,thi-xa-nghi-son,Thị xã Nghi Sơn,407

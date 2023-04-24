@@ -1,0 +1,314 @@
+basePath: /app/warehouse
+definitions:
+  model.ActionType:
+    properties:
+      text:
+        type: string
+      type:
+        type: string
+      value:
+        type: string
+    type: object
+  model.NewsAppResponse:
+    properties:
+      _id:
+        type: string
+      action:
+        $ref: '#/definitions/model.ActionType'
+      color:
+        type: string
+      displayStyle:
+        type: string
+      options:
+        $ref: '#/definitions/model.NewsOptions'
+      shortDesc:
+        type: string
+      shortTitle:
+        type: string
+      target:
+        $ref: '#/definitions/model.TargetNewDoc'
+      title:
+        type: string
+      type:
+        type: string
+    type: object
+  model.NewsOptions:
+    properties:
+      category:
+        type: string
+    type: object
+  model.TargetNewDoc:
+    properties:
+      type:
+        type: string
+      value:
+        type: string
+    type: object
+  requestmodel.SupplierHolidayChangeStatus:
+    properties:
+      status:
+        type: string
+    type: object
+  requestmodel.SupplierHolidayCreate:
+    properties:
+      from:
+        type: string
+      isApplyAll:
+        type: boolean
+      to:
+        type: string
+      warehouses:
+        items:
+          type: string
+        type: array
+    type: object
+  requestmodel.SupplierHolidayUpdate:
+    properties:
+      from:
+        type: string
+      isApplyAll:
+        type: boolean
+      to:
+        type: string
+      warehouses:
+        items:
+          type: string
+        type: array
+    type: object
+  responsemodel.ResponseChangeStatus:
+    properties:
+      _id:
+        type: string
+      status:
+        type: string
+    type: object
+  responsemodel.ResponseCreate:
+    properties:
+      _id:
+        type: string
+    type: object
+  responsemodel.ResponseSupplierHolidayDetail:
+    properties:
+      _id:
+        type: string
+      from:
+        type: string
+      isApplyAll:
+        type: boolean
+      reason:
+        type: string
+      source:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+      to:
+        type: string
+      warehouses:
+        items:
+          $ref: '#/definitions/responsemodel.ResponseWarehouseInfo'
+        type: array
+    type: object
+  responsemodel.ResponseUpdate:
+    properties:
+      _id:
+        type: string
+    type: object
+  responsemodel.ResponseWarehouseDetail:
+    properties:
+      _id:
+        type: string
+      canIssueInvoice:
+        type: boolean
+      doesSupportSellyExpress:
+        type: boolean
+      id:
+        type: integer
+      invoiceDeliveryMethod:
+        type: string
+      limitedNumberOfProductsPerOrder:
+        type: integer
+      name:
+        type: string
+      notices:
+        items:
+          $ref: '#/definitions/model.NewsAppResponse'
+        type: array
+    type: object
+  responsemodel.ResponseWarehouseInfo:
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+      status:
+        type: string
+    type: object
+info:
+  contact:
+    email: dev@selly.vn
+    name: Dev team
+    url: https://selly.vn
+  description: |
+    All APIs for Warehouse app.
+
+    ******************************
+    - Add description
+    ******************************
+  termsOfService: https://selly.vn
+  title: Selly Warehouse - App API
+  version: "1.0"
+paths:
+  /ping:
+    get:
+      consumes:
+      - application/json
+      operationId: ping
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Ping
+      tags:
+      - Common
+  /supplier-holidays:
+    post:
+      consumes:
+      - application/json
+      operationId: app-supplier-holiday-create
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.SupplierHolidayCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCreate'
+      security:
+      - ApiKeyAuth: []
+      summary: Create
+      tags:
+      - SupplierHoliday
+    put:
+      consumes:
+      - application/json
+      operationId: app-supplier-holiday-update
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.SupplierHolidayUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseChangeStatus'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - SupplierHoliday
+  /supplier-holidays/change-status:
+    patch:
+      consumes:
+      - application/json
+      operationId: app-supplier-holiday-change-status
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.SupplierHolidayChangeStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseUpdate'
+      security:
+      - ApiKeyAuth: []
+      summary: Change status
+      tags:
+      - SupplierHoliday
+  /supplier-holidays/supplier:
+    get:
+      consumes:
+      - application/json
+      operationId: app-supplier-holiday-detail
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseSupplierHolidayDetail'
+      security:
+      - ApiKeyAuth: []
+      summary: Detail
+      tags:
+      - SupplierHoliday
+  /warehouses/{id}:
+    get:
+      consumes:
+      - application/json
+      operationId: app-warehouse-detail
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseWarehouseDetail'
+      security:
+      - ApiKeyAuth: []
+      summary: Detail
+      tags:
+      - Warehouse
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

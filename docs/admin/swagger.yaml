@@ -1,0 +1,1448 @@
+basePath: /admin/warehouse
+definitions:
+  audit.Audit:
+    properties:
+      action:
+        type: string
+      author:
+        $ref: '#/definitions/audit.Author'
+      createdAt:
+        type: string
+      data:
+        type: string
+      id:
+        type: string
+      message:
+        type: string
+      target:
+        type: string
+      targetId:
+        type: string
+    type: object
+  audit.Author:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+    type: object
+  mgwarehouse.ConfigOrderConfirm:
+    properties:
+      confirmDelayInSeconds:
+        type: integer
+      isEnable:
+        type: boolean
+    type: object
+  requestmodel.LatLng:
+    properties:
+      latitude:
+        type: number
+      longitude:
+        type: number
+    type: object
+  requestmodel.SupplierHolidayChangeStatus:
+    properties:
+      status:
+        type: string
+    type: object
+  requestmodel.SupplierHolidayCreate:
+    properties:
+      from:
+        type: string
+      isApplyAll:
+        type: boolean
+      reason:
+        type: string
+      supplier:
+        type: string
+      title:
+        type: string
+      to:
+        type: string
+      warehouses:
+        items:
+          type: string
+        type: array
+    type: object
+  requestmodel.SupplierHolidayUpdate:
+    properties:
+      from:
+        type: string
+      isApplyAll:
+        type: boolean
+      reason:
+        type: string
+      supplier:
+        type: string
+      title:
+        type: string
+      to:
+        type: string
+      warehouses:
+        items:
+          type: string
+        type: array
+    type: object
+  requestmodel.TimeRange:
+    properties:
+      from:
+        type: integer
+      to:
+        type: integer
+    type: object
+  requestmodel.WarehouseCfgCreate:
+    properties:
+      delivery:
+        $ref: '#/definitions/requestmodel.WarehouseCfgDelivery'
+      doesSupportSellyExpress:
+        type: boolean
+      food:
+        $ref: '#/definitions/requestmodel.WarehouseCfgFood'
+      order:
+        $ref: '#/definitions/requestmodel.WarehouseCfgOrder'
+      orderConfirm:
+        $ref: '#/definitions/mgwarehouse.ConfigOrderConfirm'
+      partner:
+        $ref: '#/definitions/requestmodel.WarehouseCfgPartner'
+      supplier:
+        $ref: '#/definitions/requestmodel.WarehouseCfgSupplier'
+    type: object
+  requestmodel.WarehouseCfgDelivery:
+    properties:
+      deliveryMethods:
+        items:
+          type: string
+        type: array
+      enabledSources:
+        items:
+          type: integer
+        type: array
+      priorityServiceCodes:
+        items:
+          type: string
+        type: array
+      types:
+        items:
+          type: string
+        type: array
+    type: object
+  requestmodel.WarehouseCfgDeliveryUpdate:
+    properties:
+      delivery:
+        $ref: '#/definitions/requestmodel.WarehouseCfgDelivery'
+    type: object
+  requestmodel.WarehouseCfgFood:
+    properties:
+      forceClosed:
+        type: boolean
+      timeRange:
+        items:
+          $ref: '#/definitions/requestmodel.TimeRange'
+        type: array
+    type: object
+  requestmodel.WarehouseCfgFoodUpdate:
+    properties:
+      food:
+        $ref: '#/definitions/requestmodel.WarehouseCfgFood'
+    type: object
+  requestmodel.WarehouseCfgOrder:
+    properties:
+      isLimitNumberOfPurchases:
+        type: boolean
+      limitNumberOfPurchases:
+        type: integer
+      minimumValue:
+        type: number
+      paymentMethod:
+        $ref: '#/definitions/requestmodel.WarehouseCfgPaymentMethod'
+    type: object
+  requestmodel.WarehouseCfgOrderConfirm:
+    properties:
+      orderConfirm:
+        $ref: '#/definitions/mgwarehouse.ConfigOrderConfirm'
+    type: object
+  requestmodel.WarehouseCfgOrderUpdate:
+    properties:
+      order:
+        $ref: '#/definitions/requestmodel.WarehouseCfgOrder'
+    type: object
+  requestmodel.WarehouseCfgOther:
+    properties:
+      doesSupportSellyExpress:
+        type: boolean
+    type: object
+  requestmodel.WarehouseCfgOtherUpdate:
+    properties:
+      other:
+        $ref: '#/definitions/requestmodel.WarehouseCfgOther'
+    type: object
+  requestmodel.WarehouseCfgPartner:
+    properties:
+      authentication:
+        type: string
+      code:
+        type: string
+      enabled:
+        type: boolean
+      identityCode:
+        type: string
+    type: object
+  requestmodel.WarehouseCfgPartnerUpdate:
+    properties:
+      partner:
+        $ref: '#/definitions/requestmodel.WarehouseCfgPartner'
+    type: object
+  requestmodel.WarehouseCfgPaymentMethod:
+    properties:
+      bankTransfer:
+        type: boolean
+      cod:
+        type: boolean
+    type: object
+  requestmodel.WarehouseCfgSupplier:
+    properties:
+      invoiceDeliveryMethod:
+        type: string
+    type: object
+  requestmodel.WarehouseCfgSupplierUpdate:
+    properties:
+      supplier:
+        $ref: '#/definitions/requestmodel.WarehouseCfgSupplier'
+    type: object
+  requestmodel.WarehouseContact:
+    properties:
+      address:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
+  requestmodel.WarehouseCreate:
+    properties:
+      businessType:
+        type: string
+      config:
+        $ref: '#/definitions/requestmodel.WarehouseCfgCreate'
+      contact:
+        $ref: '#/definitions/requestmodel.WarehouseContact'
+      location:
+        $ref: '#/definitions/requestmodel.WarehouseLocation'
+      name:
+        type: string
+      supplier:
+        type: string
+    type: object
+  requestmodel.WarehouseLocation:
+    properties:
+      address:
+        type: string
+      district:
+        type: integer
+      fullAddress:
+        type: string
+      locationCoordinates:
+        $ref: '#/definitions/requestmodel.LatLng'
+      province:
+        type: integer
+      ward:
+        type: integer
+    type: object
+  requestmodel.WarehouseUpdate:
+    properties:
+      contact:
+        $ref: '#/definitions/requestmodel.WarehouseContact'
+        description: BusinessType string            `json:"businessType"`
+      location:
+        $ref: '#/definitions/requestmodel.WarehouseLocation'
+      name:
+        type: string
+    type: object
+  requestmodel.WarehouseUpdateStatus:
+    properties:
+      status:
+        type: string
+    type: object
+  responsemodel.OutboundRequest:
+    properties:
+      _id:
+        type: string
+      createdAt:
+        type: string
+      partner:
+        $ref: '#/definitions/responsemodel.OutboundRequestPartner'
+      status:
+        type: string
+      trackingCode:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  responsemodel.OutboundRequestHistory:
+    properties:
+      _id:
+        type: string
+      createdAt:
+        type: string
+      status:
+        type: string
+    type: object
+  responsemodel.OutboundRequestHistoryList:
+    properties:
+      list:
+        items:
+          $ref: '#/definitions/responsemodel.OutboundRequestHistory'
+        type: array
+    type: object
+  responsemodel.OutboundRequestList:
+    properties:
+      list:
+        items:
+          $ref: '#/definitions/responsemodel.OutboundRequest'
+        type: array
+    type: object
+  responsemodel.OutboundRequestPartner:
+    properties:
+      code:
+        type: string
+      identityCode:
+        type: string
+      requestId:
+        type: string
+    type: object
+  responsemodel.ResponseAuditAll:
+    properties:
+      list:
+        items:
+          $ref: '#/definitions/audit.Audit'
+        type: array
+      total:
+        type: integer
+    type: object
+  responsemodel.ResponseChangeStatus:
+    properties:
+      _id:
+        type: string
+      status:
+        type: string
+    type: object
+  responsemodel.ResponseCreate:
+    properties:
+      _id:
+        type: string
+    type: object
+  responsemodel.ResponseInfo:
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+    type: object
+  responsemodel.ResponseLatLng:
+    properties:
+      latitude:
+        type: number
+      longitude:
+        type: number
+    type: object
+  responsemodel.ResponseStaffShort:
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+    type: object
+  responsemodel.ResponseSupplierHolidayAll:
+    properties:
+      limit:
+        type: integer
+      list:
+        items:
+          $ref: '#/definitions/responsemodel.ResponseSupplierHolidayBrief'
+        type: array
+      total:
+        type: integer
+    type: object
+  responsemodel.ResponseSupplierHolidayBrief:
+    properties:
+      _id:
+        type: string
+      createdBy:
+        $ref: '#/definitions/responsemodel.ResponseInfo'
+      from:
+        type: string
+      isApplyAll:
+        type: boolean
+      reason:
+        type: string
+      source:
+        type: string
+      status:
+        type: string
+      supplier:
+        $ref: '#/definitions/responsemodel.ResponseSupplierShort'
+      title:
+        type: string
+      to:
+        type: string
+      warehouses:
+        items:
+          $ref: '#/definitions/responsemodel.ResponseWarehouseShort'
+        type: array
+    type: object
+  responsemodel.ResponseSupplierHolidayDetail:
+    properties:
+      _id:
+        type: string
+      createdBy:
+        $ref: '#/definitions/responsemodel.ResponseStaffShort'
+      from:
+        type: string
+      isApplyAll:
+        type: boolean
+      reason:
+        type: string
+      source:
+        type: string
+      status:
+        type: string
+      supplier:
+        $ref: '#/definitions/responsemodel.ResponseSupplierShort'
+      title:
+        type: string
+      to:
+        type: string
+      warehouses:
+        items:
+          $ref: '#/definitions/responsemodel.ResponseWarehouseShort'
+        type: array
+    type: object
+  responsemodel.ResponseSupplierShort:
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+    type: object
+  responsemodel.ResponseUpdate:
+    properties:
+      _id:
+        type: string
+    type: object
+  responsemodel.ResponseWarehouseAll:
+    properties:
+      limit:
+        type: integer
+      list:
+        items:
+          $ref: '#/definitions/responsemodel.WarehouseBrief'
+        type: array
+      total:
+        type: integer
+    type: object
+  responsemodel.ResponseWarehouseConfigurationDetail:
+    properties:
+      autoConfirmOrder:
+        $ref: '#/definitions/mgwarehouse.ConfigOrderConfirm'
+      delivery:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseDeliveryConfig'
+      food:
+        $ref: '#/definitions/responsemodel.ResponseWarehousePartnerFood'
+      id:
+        type: string
+      order:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseOrderConfig'
+      other:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseOtherConfig'
+      partner:
+        $ref: '#/definitions/responsemodel.ResponseWarehousePartnerConfig'
+      supplier:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseSupplierConfig'
+      warehouse:
+        type: string
+    type: object
+  responsemodel.ResponseWarehouseContact:
+    properties:
+      address:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
+  responsemodel.ResponseWarehouseDeliveryConfig:
+    properties:
+      deliveryMethods:
+        items:
+          type: string
+        type: array
+      enabledSources:
+        items:
+          type: integer
+        type: array
+      priorityServiceCodes:
+        items:
+          type: string
+        type: array
+      types:
+        items:
+          type: string
+        type: array
+    type: object
+  responsemodel.ResponseWarehouseDetail:
+    properties:
+      _id:
+        type: string
+      businessType:
+        type: string
+      contact:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseContact'
+      createdAt:
+        type: string
+      location:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseLocation'
+      name:
+        type: string
+      reasonPendingInactive:
+        type: string
+      status:
+        type: string
+      statusBeforeHoliday:
+        type: string
+      supplier:
+        $ref: '#/definitions/responsemodel.WarehouseSupplier'
+      supplierHolidayFrom:
+        type: string
+      supplierHolidayTo:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  responsemodel.ResponseWarehouseDistrict:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  responsemodel.ResponseWarehouseLocation:
+    properties:
+      address:
+        type: string
+      district:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseDistrict'
+      locationCoordinates:
+        $ref: '#/definitions/responsemodel.ResponseLatLng'
+      province:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseProvince'
+      ward:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseWard'
+    type: object
+  responsemodel.ResponseWarehouseOrderConfig:
+    properties:
+      isLimitNumberOfPurchases:
+        type: boolean
+      limitNumberOfPurchases:
+        type: integer
+      minimumValue:
+        type: number
+      paymentMethod:
+        $ref: '#/definitions/responsemodel.ResponseWarehousePaymentMethodConfig'
+    type: object
+  responsemodel.ResponseWarehouseOtherConfig:
+    properties:
+      doesSupportSellyExpress:
+        type: boolean
+    type: object
+  responsemodel.ResponseWarehousePartnerConfig:
+    properties:
+      authentication:
+        type: string
+      code:
+        type: string
+      enabled:
+        type: boolean
+      identityCode:
+        type: string
+    type: object
+  responsemodel.ResponseWarehousePartnerFood:
+    properties:
+      forceClosed:
+        type: boolean
+      isClosed:
+        type: boolean
+      timeRange:
+        items:
+          $ref: '#/definitions/responsemodel.TimeRange'
+        type: array
+    type: object
+  responsemodel.ResponseWarehousePaymentMethodConfig:
+    properties:
+      bankTransfer:
+        type: boolean
+      cod:
+        type: boolean
+    type: object
+  responsemodel.ResponseWarehouseProvince:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  responsemodel.ResponseWarehouseShort:
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+    type: object
+  responsemodel.ResponseWarehouseSupplierConfig:
+    properties:
+      invoiceDeliveryMethod:
+        type: string
+    type: object
+  responsemodel.ResponseWarehouseWard:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  responsemodel.TimeRange:
+    properties:
+      from:
+        type: integer
+      to:
+        type: integer
+    type: object
+  responsemodel.Upsert:
+    properties:
+      _id:
+        type: string
+    type: object
+  responsemodel.WarehouseBrief:
+    properties:
+      _id:
+        type: string
+      businessType:
+        type: string
+      contact:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseContact'
+      createdAt:
+        type: string
+      location:
+        $ref: '#/definitions/responsemodel.ResponseWarehouseLocation'
+      name:
+        type: string
+      slug:
+        type: string
+      status:
+        type: string
+      supplier:
+        $ref: '#/definitions/responsemodel.WarehouseSupplier'
+      updatedAt:
+        type: string
+    type: object
+  responsemodel.WarehouseSupplier:
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+    type: object
+info:
+  contact:
+    email: dev@selly.vn
+    name: Dev team
+    url: https://selly.vn
+  description: |
+    All APIs for Warehouse admin.
+
+    ******************************
+    - Add description
+    ******************************
+  termsOfService: https://selly.vn
+  title: Selly Warehouse - Admin API
+  version: "1.0"
+paths:
+  /audits:
+    get:
+      consumes:
+      - application/json
+      operationId: admin-audit-all
+      parameters:
+      - description: DeviceID
+        in: header
+        name: Device-ID
+        required: true
+        type: string
+      - in: query
+        name: limit
+        type: integer
+      - description: Pagination
+        in: query
+        name: page
+        type: integer
+      - in: query
+        name: target
+        type: string
+      - in: query
+        name: targetID
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseAuditAll'
+      security:
+      - ApiKeyAuth: []
+      summary: All
+      tags:
+      - Audit
+  /configurations/{id}:
+    get:
+      consumes:
+      - application/json
+      operationId: admin-warehouseConfiguration-detail
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseWarehouseConfigurationDetail'
+      security:
+      - ApiKeyAuth: []
+      summary: Detail
+      tags:
+      - WarehouseConfiguration
+  /configurations/{id}/delivery:
+    put:
+      consumes:
+      - application/json
+      operationId: admin-warehouseConfiguration-updateDelivery
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse config id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.WarehouseCfgDeliveryUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.Upsert'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - WarehouseConfiguration
+  /configurations/{id}/food:
+    put:
+      consumes:
+      - application/json
+      operationId: admin-warehouseConfiguration-updateFood
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse config id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.WarehouseCfgFoodUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: Update Food
+      tags:
+      - WarehouseConfiguration
+  /configurations/{id}/order:
+    put:
+      consumes:
+      - application/json
+      operationId: admin-warehouseConfiguration-updateOrder
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse config id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.WarehouseCfgOrderUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.Upsert'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - WarehouseConfiguration
+  /configurations/{id}/order-confirm:
+    put:
+      consumes:
+      - application/json
+      operationId: admin-warehouseConfiguration-order-confirm
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse config id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.WarehouseCfgOrderConfirm'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: UpdateOrderConfirm
+      tags:
+      - WarehouseConfiguration
+  /configurations/{id}/other:
+    put:
+      consumes:
+      - application/json
+      operationId: admin-warehouseConfiguration-updateOther
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse config id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.WarehouseCfgOtherUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.Upsert'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - WarehouseConfiguration
+  /configurations/{id}/partner:
+    put:
+      consumes:
+      - application/json
+      operationId: admin-warehouseConfiguration-updatePartner
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse config id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.WarehouseCfgPartnerUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.Upsert'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - WarehouseConfiguration
+  /configurations/{id}/supplier:
+    put:
+      consumes:
+      - application/json
+      operationId: admin-warehouseConfiguration-updateSupplier
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse config id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.WarehouseCfgSupplierUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.Upsert'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - WarehouseConfiguration
+  /outbound-request-histories:
+    get:
+      consumes:
+      - application/json
+      operationId: admin-outbound-request-history-list
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - example: outbound_request_id
+        in: query
+        name: request
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.OutboundRequestHistoryList'
+      security:
+      - ApiKeyAuth: []
+      summary: Get List
+      tags:
+      - OutboundRequestHistory
+  /outbound-requests:
+    get:
+      consumes:
+      - application/json
+      operationId: admin-outbound-request-list
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - example: order_id
+        in: query
+        name: order
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.OutboundRequestList'
+      security:
+      - ApiKeyAuth: []
+      summary: Get List
+      tags:
+      - OutboundRequest
+  /ping:
+    get:
+      consumes:
+      - application/json
+      operationId: ping
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Ping
+      tags:
+      - Common
+  /supplier-holidays:
+    get:
+      consumes:
+      - application/json
+      operationId: admin-supplier-holiday-all
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      - in: query
+        name: fromAt
+        type: string
+      - in: query
+        name: keyword
+        type: string
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: status
+        type: string
+      - in: query
+        name: supplier
+        type: string
+      - in: query
+        name: toAt
+        type: string
+      - in: query
+        name: warehouse
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseSupplierHolidayAll'
+      security:
+      - ApiKeyAuth: []
+      summary: All
+      tags:
+      - SupplierHoliday
+    post:
+      consumes:
+      - application/json
+      operationId: admin-supplier-holiday-create
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.SupplierHolidayCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseCreate'
+      security:
+      - ApiKeyAuth: []
+      summary: Create
+      tags:
+      - SupplierHoliday
+  /supplier-holidays/{id}:
+    get:
+      consumes:
+      - application/json
+      operationId: admin-supplier-holiday-detail
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      - description: Supplier holiday id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseSupplierHolidayDetail'
+      security:
+      - ApiKeyAuth: []
+      summary: Detail
+      tags:
+      - SupplierHoliday
+    put:
+      consumes:
+      - application/json
+      operationId: admin-supplier-holiday-update
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      - description: Supplier holiday id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.SupplierHolidayUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseChangeStatus'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - SupplierHoliday
+  /supplier-holidays/{id}/status:
+    patch:
+      consumes:
+      - application/json
+      operationId: admin-supplier-holiday-change-status
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      - description: Supplier holiday id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.SupplierHolidayChangeStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseUpdate'
+      security:
+      - ApiKeyAuth: []
+      summary: Change status
+      tags:
+      - SupplierHoliday
+  /supplier-holidays/run-job-update-holiday-status-for-supplier:
+    get:
+      consumes:
+      - application/json
+      operationId: run-job-update-holiday-status-for-supplier
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: RunJobUpdateHolidayStatusForSupplier
+      tags:
+      - SupplierHoliday
+  /supplier-holidays/run-job-update-holiday-warehouses:
+    get:
+      consumes:
+      - application/json
+      operationId: run-job-update-holiday-warehouses
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: RunJobUpdateHolidayWarehouses
+      tags:
+      - SupplierHoliday
+  /warehouses:
+    get:
+      consumes:
+      - application/json
+      operationId: admin-warehouse-all
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - enum:
+        - food
+        - all
+        - other
+        in: query
+        name: businessType
+        type: string
+      - in: query
+        name: keyword
+        type: string
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: partner
+        type: string
+      - in: query
+        name: status
+        type: string
+      - in: query
+        name: supplier
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseWarehouseAll'
+      security:
+      - ApiKeyAuth: []
+      summary: All
+      tags:
+      - Warehouse
+    post:
+      consumes:
+      - application/json
+      operationId: admin-warehouse-create
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.WarehouseCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.Upsert'
+      security:
+      - ApiKeyAuth: []
+      summary: Create
+      tags:
+      - Warehouse
+  /warehouses/{id}:
+    get:
+      consumes:
+      - application/json
+      operationId: admin-warehouse-detail
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.ResponseWarehouseDetail'
+      security:
+      - ApiKeyAuth: []
+      summary: Detail
+      tags:
+      - Warehouse
+    put:
+      consumes:
+      - application/json
+      operationId: admin-warehouse-update
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: routeId
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.WarehouseUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.Upsert'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - Warehouse
+  /warehouses/{id}/status:
+    patch:
+      consumes:
+      - application/json
+      operationId: admin-warehouse-updateStatus
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      - description: Warehouse id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/requestmodel.WarehouseUpdateStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responsemodel.Upsert'
+      security:
+      - ApiKeyAuth: []
+      summary: Update
+      tags:
+      - Warehouse
+  /warehouses/run-job-set-is-closed:
+    get:
+      consumes:
+      - application/json
+      operationId: run-job-set-is-close-warehouse-all
+      parameters:
+      - description: Device id
+        in: header
+        name: device-id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: RunJobSetIsClosed
+      tags:
+      - Warehouse
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
